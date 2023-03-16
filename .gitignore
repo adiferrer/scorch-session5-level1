@@ -131,3 +131,5 @@ dmypy.json
 # Exported site files
 /site
 /my_site
+
+.DS_Store
