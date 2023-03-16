@@ -1,0 +1,20 @@
+
+    <header>
+        <h2>Projects</h2>
+    </header>
+    <div class="content">
+    {% for project in projects %}
+    
+
+
+{% if project[0]["image"] %}
+    <img src="{{ project[0]['image'] | get_image_path }}" alt="{{ project[0]['title'] }}" class="project-image"/>
+{% endif %}
+
+    {{ project[1] | safe }}
+    {% if project[0]["link"] %}
+        <a href="{{ project[0]['link'] }}" class="icon solid fa-link" target="_blank"><span class="label">{{ project[0]['title'] }}</span></a>
+    {% endif %}
+    
+{% endfor %}
+</div>

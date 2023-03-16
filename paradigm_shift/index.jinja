@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<!--
+	Paradigm Shift by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>{{ config["name"] }}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="{{ config['biography'] }}" />
+		<!--highlightjs-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/monokai_sublime.css">
+		<script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="icon" type="image/png" href="images/comp.png"/>
+		{% if config["ua_code"] %}
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id={{config['ua_code']}}"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', '{{config["ua_code"]}}');
+		</script>
+		{% endif %}
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Intro -->
+					<section class="intro">
+						<header>
+							<h1>{{ config["name"] }}</h1>
+							{% if config["role"] and config["company"] %}
+							<h2>{{ config["role"] }} &nbsp;&bull;&nbsp; {{ config["company"] }}</h2>
+							{% elif config["role"] %}
+							<h2>{{ config["role"] }}</h2>
+							{% elif config["company"] %}
+							<h2>{{ config["company"] }}</h2>
+							{% else %}
+							{% endif %}
+							{% if config["biography"] %}
+							<p>{{ config["biography"] }}</p>
+							{%endif%}
+							{% if config["social"] %}
+								<ul class="icons">
+									{% if config['social']["github"] %}
+									<li><a href="https://github.com/{{config['social']['github']}}" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+									{% endif %}
+									{% if config['social']["youtube"] %}
+									<li><a href="https://youtube.com/{{config['social']['youtube']}}" class="icon brands fa-youtube" target="_blank"><span class="label">YouTube</span></a></li>
+									{% endif %}
+									{% if config['social']["twitch"] %}
+									<li><a href="https://twitch.tv/{{config['social']['twitch']}}" class="icon brands fa-twitch" target="_blank"><span class="label">Twitch</span></a></li>
+									{% endif %}
+									{% if config['social']["twitter"] %}
+									<li><a href="https://www.twitter.com/{{config['social']['twitter']}}" class="icon brands fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
+									{% endif %}
+									{% if config['social']["instagram"] %}
+									<li><a href="https://www.instagram.com/{{config['social']['instagram']}}" class="icon brands fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+									{% endif %}
+									{% if config['social']["facebook"] %}
+									<li><a href="https://www.facebook.com/{{config['social']['facebook']}}" class="icon brands fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+									{% endif %}
+									{% if config['social']["linkedin"] %}
+									<li><a href="https://www.instagram.com/{{config['social']['instagram']}}" class="icon brands fa-linkedin-in" target="_blank"><span class="label">LinkedIn</span></a></li>
+									{% endif %}
+									{% if config['social']["snapchat"] %} 
+									<li><a href="https://snapchat.com/add/{{config['social']['snapchat']}}" class="icon brands fa-snapchat" target="_blank"><span class="label">snapchat</span></a></li>
+									{% endif %}
+									{% if config['email'] %} 
+									<li><a href="mailto:{{config['email']}}" class="icon solid fa-envelope" target="_blank"><span class="label">email</span></a></li>
+									{% endif %}
+									{% if config['phone'] %} 
+									<li><a href="tel:{{config['phone']}}" class="icon solid fa-phone" target="_blank"><span class="label">phone</span></a></li>
+									{% endif %}
+								</ul>
+							{%endif%}
+							<ul class="actions">
+								<li><a href="#first" class="arrow scrolly"><span class="label">Next</span></a></li>
+							</ul>
+						</header>
+						<div class="content" style="min-height:100%;">
+							{% if config["avatar"] %}
+							<span class="image fill" data-position="center"><img src="{{ config['avatar'] | get_image_path }}" alt="{{ config['name'] }}" /></span>
+							{% elif config["background"] %}
+							<span class="image fill" data-position="center"><img src="{{ config['background'] | get_image_path }}" alt="{{ config['name'] }}" /></span>
+							{% else %}
+							<span class="image fill" data-position="center"><img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80" alt="{{ config['name'] }}" /></span>
+							{% endif %}
+						</div>
+					</section>
+
+				{% set section_id = "first" %}
+
+				{% if projects_html %}
+					<section id="{{section_id}}">
+					{{ projects_html | safe }}
+					</section>
+					{% set section_id = "second" %}
+				{% endif %}
+
+				{% if education_html %}
+					<section id="{{section_id}}">
+					{{ education_html | safe }}
+					</section>
+					{% if section_id == "first" %}
+						{% set section_id = "second" %}
+					{%else%}
+						{% set section_id = "third" %}
+					{%endif%}
+				{% endif %}
+
+				{% if work_experience_html %}
+					<section id="{{section_id}}">
+					{{ work_experience_html | safe }}
+					</section>
+					{% if section_id == "first" %}
+						{% set section_id = "second" %}
+					{%elif section_id == "second" %}
+						{% set section_id = "third" %}
+					{%elif section_id == "third" %}
+						{% set section_id = "fourth" %}
+					{% else %}
+						{%set section_id = "fifth"%}
+					{%endif%}
+				{% endif %}
+
+				{% if volunteering_experience_html %}
+					<section id="{{section_id}}">
+					{{ volunteering_experience_html | safe }}
+					</section>
+					{% if section_id == "first" %}
+						{% set section_id = "second" %}
+					{%elif section_id == "second" %}
+						{% set section_id = "third" %}
+					{%elif section_id == "third" %}
+						{%set section_id = "fourth"%}
+					{%elif section_id == "fourth" %}
+						{%set section_id = "fifth"%}
+					{%else%}
+						{%set section_id = "sixth"%}
+					{%endif%}
+				{% endif %}
+
+				{% if gallery_html %}
+				<section id="{{section_id}}">
+					{{ gallery_html | safe}}
+				</section>
+				{% endif %}
+				<!-- Copyright -->
+
+					<section>
+						<header>
+							<h2>Head back to the top</h2>
+							<ul class="actions">
+								<li><a href="#first" class="arrow scrolly" style="transform: rotate(180deg) scaleX(-1);"><span class="label">Next</span></a></li>
+							</ul>
+						</header>
+						<div class="content">
+
+						</div>
+					</section>
+
+					<div class="copyright"><p>&copy; {{ config["name"] }} 2021. Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a>. </br>Built using: <a href="https://ezcv.readthedocs.io" target="_blank">ezcv</a>.</p></div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="js/jquery.min.js"></script>
+			<script src="js/jquery.scrolly.min.js"></script>
+			<script src="js/browser.min.js"></script>
+			<script src="js/breakpoints.min.js"></script>
+			<script src="js/util.js"></script>
+			<script src="js/main.js"></script>
+			<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+			
+	</body>
+</html>

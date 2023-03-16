@@ -1,0 +1,22 @@
+						<header>
+							<h2>Photography</h2>
+						</header>
+                        <div class="content">
+                        {% for sublist in gallery | split_to_sublists(3, False) %}
+                                {% if sublist | length == 3 and not config["disable_fancy_gallery"]%}
+                                    {% set format = range(2, 4) | random %} {# Either 2 or 3#}
+                                {% else %}
+                                    {% set format = 1 %}
+                                {% endif %}
+                        <section>
+                            <div class="content">
+                                <div class="gallery">
+                            {% for image in sublist %}
+                                <a href="{{image[0]['file_path']}}" {% if format == 2 and loop.index0 != 0 %} class="portrait"  {% elif format == 3 and loop.index0 != 2 %} class="portrait" {% else %} class="landscape" {% endif %}><img src="{{image[0]['file_path']}}" alt="{{ image[0]['file_path'] | get_filename_without_extension }}" /></a>
+                            {% endfor %}
+                                </div>
+                                <p>For more photos, click <a href="https://www.instagram.com/takenbyadi" target="_blank">here</a></p>
+                            </div>
+                        </section>
+                        {%endfor%}
+						</div>

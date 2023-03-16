@@ -1,0 +1,53 @@
+created: 2022-4-22
+ezcv_version: 0.3.4
+folder: paradigm_shift
+name: paradigm_shift
+required_config:
+  avatar:
+    default: https://minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg
+    description: A path to an image of yourself (can also be a URL)
+    type: str
+  background:
+    default: https://images.unsplash.com/photo-1652961989677-a236d38f63f6?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170
+    description: A path to an image to use as a background
+    type: str
+  name:
+    default: name
+    description: Your full name
+    type: str
+sections:
+  education:
+    fields:
+      current: bool
+      institution: str
+      title: str
+      year_ended: int
+      year_started: int
+    type: markdown
+  gallery:
+    type: gallery
+  projects:
+    fields:
+      image: str
+      link: str
+      title: str
+    type: markdown
+  volunteering_experience:
+    fields:
+      company: str
+      current: bool
+      month_started: str
+      role: str
+      year_ended: int
+      year_started: int
+    type: markdown
+  work_experience:
+    fields:
+      company: str
+      current: bool
+      month_started: str
+      role: str
+      year_ended: int
+      year_started: int
+    type: markdown
+updated: 2023-3-16

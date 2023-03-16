@@ -1,0 +1,14 @@
+
+    <header>
+        <h2>Work Experience</h2>
+    </header>
+    <div class="content">
+{% for experience in work_experience %}
+    <h3>{{ experience[0]["company"] }} | {{ experience[0]["role"] }}</h3>
+    <!-- Metadata -->
+    <strong><em>{{experience[0]["month_started"] | pretty_datetime(experience[0]["year_started"], experience[0]["month_ended"], experience[0]["year_ended"], experience[0]["current"])}}</em></strong>
+    <!-- Content -->
+    <p>{{ experience[1] | safe}}</p>
+{% endfor %}
+    </div>
+

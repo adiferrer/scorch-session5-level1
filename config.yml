@@ -1,0 +1,7 @@
+# See https://ezcv.readthedocs.io for documentation
+name: Jeanne Ferrer
+theme: paradigm_shift
+resume: false
+biography: Filipino Computer Science student with a passion for web develoment and all things coding. Enthusiastic volunteer and photographer.
+background:  # A path to an image to use as a background
+avatar: images/avatar.jpg
