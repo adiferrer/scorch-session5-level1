@@ -23,16 +23,6 @@ jobs:
       - name: Print inputs
         run: |
           echo Inputs are ${{ inputs.version_number }} ${{ inputs.description }}
-#   test:
-#     runs-on: ${{ matrix.os }}
-
-#     strategy:
-#       fail-fast: false
-#       matrix:
-#         os: [ubuntu-20.04]
-#     env:
-#       prepo: ${{github.repository}}
-#     steps:
   build:
     runs-on: ubuntu-latest
     steps:
@@ -48,25 +38,11 @@ jobs:
         python -m pip install --upgrade setuptools wheel
         python -m pip install ezcv
     
-    - name: Set up Minify Actions
-      uses: amireshoon/minifyAction@main
-      with:
-        repo: $prepo
-        
-    - name: Minifying Codes
-      run: |
-        minifier.sh $prepo
-        
-    - name: Pushing to production branch
-      uses: actions-js/push@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        directory: github/workspace
-        branch: production
-        message: Minified css, js and html
-        author_name: MinifyAction[bot]
-        author_email: amireshoon-minifyAction@users.noreply.github.com
-        force: true
+    - name: Image Optimizer
+      uses: crush-pics/crush-pics-github-action@v1.0
+
+    - name: Minify Css Js and Html files in GitHub Action
+      uses: amireshoon/minifyAction@v1.1
 
     - name: build html files
       run: |
