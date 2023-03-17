@@ -47,8 +47,6 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install --upgrade setuptools wheel
         python -m pip install ezcv
-        
-    - uses: actions/checkout@v2
     
     - name: Set up Minify Actions
       uses: amireshoon/minifyAction@main
